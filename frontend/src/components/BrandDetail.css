@@ -1,0 +1,44 @@
+/* Container for the entire component */
+.brand-detail-container {
+    max-width: 1200px; /* Limit the width for better readability */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add padding */
+    text-align: center; /* Center the text */
+}
+
+/* Sales and Purchase Sections */
+.sales-section, .purchase-section {
+    margin-bottom: 40px; /* Add spacing between sections */
+}
+
+/* Table Styling */
+table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Remove space between cells */
+    margin-top: 15px; /* Add spacing above the table */
+}
+
+th, td {
+    padding: 10px; /* Add padding to table cells */
+    border: 1px solid #ddd; /* Light border for cells */
+}
+
+th {
+    background-color: #f8f9fa; /* Light background for headers */
+    font-weight: bold; /* Bold text for headers */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .brand-detail-container {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    table {
+        font-size: 14px; /* Smaller font size for tables */
+    }
+
+    th, td {
+        padding: 8px; /* Reduce cell padding on smaller screens */
+    }
+}
