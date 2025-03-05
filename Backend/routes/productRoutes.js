@@ -18,20 +18,22 @@
 
 // module.exports = Product;
 
-const express = require('express');
+import express from "express";
+import Product from "../models/Product.js"; // Ensure correct file extension for ES modules
+
 const router = express.Router();
-const Product = require('../models/Product');
 
 // GET all products
-router.get('/', async (req, res) => {
-    const { category } = req.query;
-    try {
-        const query = category ? { category } : {};
-        const products = await Product.find(query);
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to fetch products', error });
-    }
+router.get("/", async (req, res) => {
+  const { category } = req.query;
+  try {
+    const query = category ? { category } : {};
+    const products = await Product.find(query);
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch products", error });
+  }
 });
 
-module.exports = router;
+export default router; // Use ES module export
+
