@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import './BrandDetail.css'; // Import the CSS file for styling
 
 const BrandDetail = () => {
-  const { productId } = useParams();
+  const { productId,name} = useParams();
+  
   const [sales, setSales] = useState([]);
   const [purchases, setPurchases] = useState([]);
 
@@ -33,7 +34,7 @@ const BrandDetail = () => {
 
   return (
     <div className="brand-detail-container">
-      <h2>Details for Product ID: {productId || 'Unknown'}</h2>
+      <h2>Details for Product ID: { productId|| 'Unknown'}</h2>
 
       <div className="sales-section">
         <h3>Sales Records</h3>
