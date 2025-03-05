@@ -59,16 +59,16 @@
 // });
 
 // module.exports = router;
-const express = require('express');
-const router = express.Router();
+import express from "express";
 import Sales from "../models/Sales.js";
+import Product from "../models/Product.js";
 
-import Product from "../models/Product.js"
+const router = express.Router();
 
 // Get all sales records
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
     try {
-        const sales = await Sales.find().populate('productId'); // Populate product details
+        const sales = await Sales.find().populate("productId"); // Populate product details
         res.json(sales);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -76,12 +76,12 @@ router.get('/', async (req, res) => {
 });
 
 // Get sales records for a specific product
-router.get('/:productId', async (req, res) => {
+router.get("/:productId", async (req, res) => {
     try {
-        const sales = await Sales.find({ productId: req.params.productId }).populate('productId');
+        const sales = await Sales.find({ productId: req.params.productId }).populate("productId");
 
         if (!sales.length) {
-            return res.status(404).json({ message: 'No sales records found for this product' });
+            return res.status(404).json({ message: "No sales records found for this product" });
         }
 
         res.json(sales);
@@ -91,27 +91,28 @@ router.get('/:productId', async (req, res) => {
 });
 
 // Add a new sales record
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const { productId, salesQuantity, salesUnitPrice } = req.body;
 
         // Validate required fields
         if (!productId || !salesQuantity || !salesUnitPrice) {
-            return res.status(400).json({ message: 'Missing required fields' });
+            return res.status(400).json({ message: "Missing required fields" });
         }
 
         // Check if product exists
         const product = await Product.findById(productId);
         if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
+            return res.status(404).json({ message: "Product not found" });
         }
 
         // Check if enough stock is available
         if (product.stockQuantity < salesQuantity) {
-            return res.status(400).json({ message: 'Insufficient stock available' });
+            return res.status(400).json({ message: "Insufficient stock available" });
         }
 
         // Create and save new sales record
+        const salesTimestamp = new Date(); // ✅ Define timestamp properly
         const newSale = new Sales({
             productId,
             salesQuantity,
@@ -132,4 +133,4 @@ router.post('/', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router; // ✅ Use ES Module export
