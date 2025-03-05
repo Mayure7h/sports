@@ -33,8 +33,11 @@ const productSchema = new Schema({
     name: { type: String, required: true },
     price: { type: Number, required: true },
     stockQuantity: { type: Number, required: true },
-    image: { type: String, required: true },           // New field for product image URL
-    rating: { type: Number, default: 0 }                // New field for product rating (optional)
+    image: { type: String, required: true },  // Product image URL
+    rating: { type: Number, default: 0 }      // Product rating (optional)
 });
 
-module.exports = mongoose.model('Product', productSchema);
+const Product = mongoose.model("Product", productSchema);
+
+export default Product; // ✅ Use ES module export
+

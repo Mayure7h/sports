@@ -55,12 +55,11 @@ const { Schema } = mongoose;
 const salesSchema = new Schema({
     productId: { 
         type: Schema.Types.ObjectId, 
-        ref: 'Product', 
+        ref: "Product", 
         required: true 
     },
     salesTimestamp: { 
         type: Date, 
-        // default: Date.now 
         default: () => {
             // Convert current UTC time to IST (UTC+5:30)
             const now = new Date();
@@ -83,5 +82,12 @@ const salesSchema = new Schema({
     }
 });
 
+// Automatically calculate `salesTotalAmount` before saving
+salesSchema.pre("save", function (next) {
+    this.salesTotalAmount = this.salesQuantity * this.salesUnitPrice;
+    next();
+});
 
-module.exports = mongoose.model('Sales', salesSchema);
+const Sales = mongoose.model("Sales", salesSchema);
+
+export default Sales; // ✅ Use ES module export

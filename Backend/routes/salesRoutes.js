@@ -61,8 +61,9 @@
 // module.exports = router;
 const express = require('express');
 const router = express.Router();
-const Sales = require('../models/Sales');
-const Product = require('../models/Product');
+import Sales from "../models/Sales.js";
+
+import Product from "../models/Product.js"
 
 // Get all sales records
 router.get('/', async (req, res) => {

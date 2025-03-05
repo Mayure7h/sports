@@ -18,12 +18,11 @@ const { Schema } = mongoose;
 const purchaseSchema = new Schema({
     productId: { 
         type: Schema.Types.ObjectId, 
-        ref: 'Product', 
+        ref: "Product", 
         required: true 
     },
     purchaseTimestamp: { 
         type: Date, 
-        // default: Date.now 
         default: () => {
             // Convert current UTC time to IST (UTC+5:30)
             const now = new Date();
@@ -47,4 +46,6 @@ const purchaseSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Purchase', purchaseSchema);
+const Purchase = mongoose.model("Purchase", purchaseSchema);
+
+export default Purchase; // ✅ Use ES module export

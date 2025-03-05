@@ -38,8 +38,8 @@
 
 const express = require('express');
 const router = express.Router();
-const Purchase = require('../models/Purchase');
-const Product = require('../models/Product');
+import Purchase from "../models/Purchase.js";
+import Product from "../models/Product.js"
 
 // Add a new purchase
 router.post('/', async (req, res) => {
