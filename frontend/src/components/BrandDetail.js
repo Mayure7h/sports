@@ -17,14 +17,14 @@ const BrandDetail = () => {
 
     console.log(`Fetching data for product ID: ${productId}`);
 
-    axios.get(`http://localhost:5000/api/sales/${productId}`)
+    axios.get(`https://sports-7-ypvt.onrender.com/api/sales/${productId}`)
       .then((res) => {
         console.log('Sales data received:', res.data);
         setSales(res.data);
       })
       .catch((err) => console.error('Failed to fetch sales:', err));
 
-    axios.get(`http://localhost:5000/api/purchases/${productId}`)
+    axios.get(`https://sports-7-ypvt.onrender.com/api/purchases/${productId}`)
       .then((res) => {
         console.log('Purchase data received:', res.data);
         setPurchases(res.data);

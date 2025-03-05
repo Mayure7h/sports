@@ -17,7 +17,7 @@ const ProductTable = ({ category }) => {
             setError('');
 
             try {
-                const res = await axios.get(`http://localhost:5000/api/products?category=${category}`);
+                const res = await axios.get(`https://sports-7-ypvt.onrender.com/api/products?category=${category}`);
                 setProducts(res.data);
             } catch (err) {
                 console.error('Failed to fetch products:', err);
