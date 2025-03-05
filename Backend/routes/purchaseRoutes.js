@@ -36,28 +36,30 @@
 
 // module.exports = router;
 
-const express = require('express');
-const router = express.Router();
+import express from "express";
 import Purchase from "../models/Purchase.js";
-import Product from "../models/Product.js"
+import Product from "../models/Product.js";
+
+const router = express.Router();
 
 // Add a new purchase
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
     const { productId, purchaseQuantity, purchaseUnitCost } = req.body;
 
     try {
         // Validate required fields
         if (!productId || !purchaseQuantity || !purchaseUnitCost) {
-            return res.status(400).json({ message: 'Missing required fields' });
+            return res.status(400).json({ message: "Missing required fields" });
         }
 
         // Check if product exists
         const product = await Product.findById(productId);
         if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
+            return res.status(404).json({ message: "Product not found" });
         }
 
         // Create purchase entry
+        const purchaseTimestamp = new Date(); // ✅ Define purchaseTimestamp
         const newPurchase = new Purchase({
             productId,
             purchaseQuantity,
@@ -79,9 +81,9 @@ router.post('/', async (req, res) => {
 });
 
 // Get all purchases
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
     try {
-        const purchases = await Purchase.find().populate('productId');
+        const purchases = await Purchase.find().populate("productId");
         res.json(purchases);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -89,12 +91,12 @@ router.get('/', async (req, res) => {
 });
 
 // Get all purchases for a specific product
-router.get('/:productId', async (req, res) => {
+router.get("/:productId", async (req, res) => {
     try {
-        const purchases = await Purchase.find({ productId: req.params.productId }).populate('productId');
+        const purchases = await Purchase.find({ productId: req.params.productId }).populate("productId");
 
         if (!purchases.length) {
-            return res.status(404).json({ message: 'No purchase records found for this product' });
+            return res.status(404).json({ message: "No purchase records found for this product" });
         }
 
         res.json(purchases);
@@ -103,4 +105,4 @@ router.get('/:productId', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router; // ✅ Fix export for ES Modules
