@@ -12,7 +12,7 @@
 
 // module.exports =  mongoose.model('Purchase', purchaseSchema);
 
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const purchaseSchema = new Schema({

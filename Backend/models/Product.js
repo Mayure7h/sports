@@ -24,7 +24,7 @@
 
 // module.exports = mongoose.model('Product', productSchema);
 
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const productSchema = new Schema({

@@ -49,7 +49,7 @@
 
 // module.exports = mongoose.model('Sales', salesSchema);
 
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const salesSchema = new Schema({
