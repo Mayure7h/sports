@@ -43,6 +43,7 @@ const ProductTable = ({ category }) => {
                         <div key={product._id} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
                             <img src={product.image} alt={product.name} style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '8px' }} />
                             <h3>{product.name}</h3>
+                            <p>{product._id}</p>
                             <p><strong>Brand:</strong> {product.brand}</p>
                             <p><strong>Price:</strong> ₹{product.price?.toFixed(2)}</p>
                             <p><strong>Rating:</strong> ⭐ {product.rating}/5</p>
